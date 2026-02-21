@@ -1,4 +1,8 @@
 # Kafka MCP Server
+<img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python&logoColor=white" alt="python 3.10+ badge"/>
+<img src="https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square&logo=apache&logoColor=white" alt="License">  
+
+---
 
 An MCP server implementation for Kafka, allowing LLMs to interact with and manage Kafka clusters.
 
@@ -12,7 +16,7 @@ An MCP server implementation for Kafka, allowing LLMs to interact with and manag
 
 ## Prerequisites
 
-- Python 3.12+
+- Python 3.10+
 - `uv` package manager (recommended)
 - A running Kafka cluster (e.g., local Docker, Confluent Cloud, etc.)
 
@@ -51,7 +55,7 @@ Add the following to your Claude Desktop configuration file (claude_desktop_conf
 {
   "mcpServers": {
     "kafka": {
-      "command": "/opt/homebrew/bin/uv",
+      "command": "<uv PATH>",
       "args": [
         "--directory",
         "<kafka-mcp PATH>",
@@ -114,3 +118,7 @@ src/kafka-mcp/
 ## Troubleshooting
 
 - **Connection Refused**: Ensure `KAFKA_BOOTSTRAP_SERVERS` is correct and reachable.
+
+## TODO
+- SASL
+- JMX
