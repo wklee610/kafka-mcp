@@ -1,6 +1,8 @@
 # Kafka MCP Server
-<img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python&logoColor=white" alt="python 3.10+ badge"/>
-<img src="https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square&logo=apache&logoColor=white" alt="License">  
+![Python](https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square&logo=apache&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-Cluster%20Ops-black?logo=apachekafka)
+![MCP](https://img.shields.io/badge/MCP-Compatible-purple)
 
 ---
 
