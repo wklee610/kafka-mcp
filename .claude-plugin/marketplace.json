@@ -1,0 +1,35 @@
+{
+  "name": "kafka-mcp",
+  "metadata": {
+    "description": "MCP Server for Apache Kafka",
+    "version": "1.0.0"
+  },
+  "owner": {
+    "name": "Hajun Lee",
+    "email": "wklee610@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "kafka-mcp",
+      "description": "MCP Server for Apache Kafka. Inspect topics, consumer groups, partitions, and cluster metadata directly from Claude.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Hajun Lee",
+        "email": "wklee610@gmail.com"
+      },
+      "source": "./src/kafka-mcp",
+      "category": "development",
+      "keywords": [
+        "kafka",
+        "apache-kafka",
+        "mcp",
+        "streaming",
+        "infrastructure",
+        "python",
+        "message-queue",
+        "data-platform"
+      ],
+      "strict": false
+    }
+  ]
+}
