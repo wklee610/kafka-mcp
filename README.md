@@ -13,7 +13,7 @@ An MCP server implementation for Kafka, allowing LLMs to interact with and manag
 - **Cluster Management**: View broker details `describe_cluster`, `describe_brokers`.
 - **Topic Management**: List `list_topics`, create `create_topic`, delete `delete_topic`, describe `describe_topic`, and increase partitions `create_partitions`.
 - **Configuration Management**: View `describe_configs` and modify `alter_configs` dynamic configs for topics, brokers, and groups.
-- **Consumer Groups**: List `list_consumer_groups` and describe `describe_consumer_group` consumer groups.
+- **Consumer Groups**: List `list_consumer_groups`, describe `describe_consumer_group`, and securely manage offsets with `reset_consumer_group_offset` and `rewind_consumer_group_offset_by_timestamp`. Advanced tools include state validation, dry runs, and execution audit logging.
 - **Messaging**: Consume messages `consume_messages` (from beginning, latest, or specific offsets) and produce messages `produce_message`.
 
 ## Prerequisites
@@ -46,7 +46,7 @@ You can run the server directly using `uv` or `python`.
 ```bash
 # Using uv (Recommended)
 export KAFKA_BOOTSTRAP_SERVERS=localhost:9092
-uv run src/kafka-mcp/main.py
+uv run src/kafka_mcp/main.py
 ```
 
 ### Claude Desktop Configuration
@@ -100,13 +100,15 @@ uv run python -c "from src.kafka_mcp import main; print('Imports successful')"
 | | `alter_configs` | Update dynamic configs. |
 | **Consumers** | `list_consumer_groups` | List all active consumer groups. |
 | | `describe_consumer_group` | Get members and state of a group. |
+| | `reset_consumer_group_offset` | Safely change consumer group offsets to earliest, latest, or a specific offset. |
+| | `rewind_consumer_group_offset_by_timestamp` | Rewind/advance consumer group offsets securely based on a timestamp. |
 | **Messages** | `consume_messages` | Consume messages from a topic (supports offsets, limits). |
 | | `produce_message` | Send a message to a topic. |
 
 ## Project Structure
 
 ```
-src/kafka-mcp/
+src/kafka_mcp/
 ├── configs/       # Configuration handling
 ├── connections/   # Kafka client factories (singleton)
 ├── tools/         # Tool implementations

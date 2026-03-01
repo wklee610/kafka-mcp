@@ -3,7 +3,7 @@ from typing import (
     Any, 
     List
 )
-from connections.kafka import get_kafka_factory
+from ..connections.kafka import get_kafka_factory
 
 def describe_cluster() -> Dict[str, Any]:
     """Returns information about the Kafka cluster (brokers, controller)."""

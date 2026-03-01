@@ -3,7 +3,7 @@ from typing import (
     Any, 
     Optional
 )
-from connections.kafka import get_kafka_factory
+from ..connections.kafka import get_kafka_factory
 
 def produce_message(
     topic_name: str, 

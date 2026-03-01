@@ -3,7 +3,7 @@ from confluent_kafka import (
     Consumer
 )
 from confluent_kafka.admin import AdminClient
-from configs.config import get_kafka_config, KafkaConfig
+from ..configs.config import get_kafka_config, KafkaConfig
 
 class KafkaClientFactory:
     _instance = None

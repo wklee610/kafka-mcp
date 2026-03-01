@@ -17,7 +17,7 @@
         "name": "Hajun Lee",
         "email": "wklee610@gmail.com"
       },
-      "source": "./src/kafka-mcp",
+      "source": ".",
       "category": "development",
       "keywords": [
         "kafka",
@@ -29,7 +29,12 @@
         "message-queue",
         "data-platform"
       ],
-      "strict": false
+      "strict": false,
+      "command": "uv",
+      "args": [
+        "run",
+        "kafka-mcp"
+      ]
     }
   ]
 }

@@ -9,7 +9,7 @@ from confluent_kafka.admin import (
     ConfigResource, 
     ResourceType
 )
-from connections.kafka import get_kafka_factory
+from ..connections.kafka import get_kafka_factory
 
 def list_topics() -> List[str]:
     """Returns a list of all topic names in the cluster."""
