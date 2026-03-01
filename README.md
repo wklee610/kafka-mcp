@@ -46,7 +46,7 @@ You can run the server directly using `uv` or `python`.
 ```bash
 # Using uv (Recommended)
 export KAFKA_BOOTSTRAP_SERVERS=localhost:9092
-uv run src/kafka_mcp/main.py
+uv run kafka-mcp
 ```
 
 ### Claude Desktop Configuration
@@ -62,7 +62,7 @@ Add the following to your Claude Desktop configuration file (claude_desktop_conf
         "--directory",
         "<kafka-mcp PATH>",
         "run",
-        "main.py"
+        "kafka-mcp"
       ],
       "env": {
         "KAFKA_BOOTSTRAP_SERVERS": "localhost:9092"
