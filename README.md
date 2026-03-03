@@ -100,6 +100,7 @@ uv run python -c "from src.kafka_mcp import main; print('Imports successful')"
 | | `alter_configs` | Update dynamic configs. |
 | **Consumers** | `list_consumer_groups` | List all active consumer groups. |
 | | `describe_consumer_group` | Get members and state of a group. |
+| | `get_consumer_group_offsets` | Get committed offset, high/low watermarks, and calculate total lag for a topic. |
 | | `reset_consumer_group_offset` | Safely change consumer group offsets to earliest, latest, or a specific offset. |
 | | `rewind_consumer_group_offset_by_timestamp` | Rewind/advance consumer group offsets securely based on a timestamp. |
 | **Messages** | `consume_messages` | Consume messages from a topic (supports offsets, limits). |

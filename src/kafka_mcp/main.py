@@ -19,7 +19,8 @@ from .tools.consumer import (
     list_consumer_groups, 
     describe_consumer_group,
     reset_consumer_group_offset,
-    rewind_consumer_group_offset_by_timestamp
+    rewind_consumer_group_offset_by_timestamp,
+    get_consumer_group_offsets
 )
 from .tools.producer import produce_message
 
@@ -44,6 +45,7 @@ mcp.tool()(alter_configs)
 mcp.tool()(consume_messages)
 mcp.tool()(list_consumer_groups)
 mcp.tool()(describe_consumer_group)
+mcp.tool()(get_consumer_group_offsets)
 mcp.tool()(reset_consumer_group_offset)
 mcp.tool()(rewind_consumer_group_offset_by_timestamp)
 
