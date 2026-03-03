@@ -369,3 +369,68 @@ def rewind_consumer_group_offset_by_timestamp(group_id: str, topic_name: str, ti
         }
     except Exception as e:
         return {"error": f"Failed to rewind offset for group '{group_id}': {e}"}
+
+def get_consumer_group_offsets(group_id: str, topic_name: str) -> Dict[str, Any]:
+    """
+    Get the committed offsets and lag for a specific consumer group and topic.
+    Returns the committed offset, high/low watermarks, and calculated lag for each partition.
+    """
+    admin_client = get_kafka_factory().create_admin_client()
+    
+    try:
+        # Discover partitions
+        cluster_meta = admin_client.list_topics(topic=topic_name, timeout=10)
+        if topic_name not in cluster_meta.topics:
+            return {"error": f"Topic '{topic_name}' not found"}
+        
+        topic_meta = cluster_meta.topics[topic_name]
+        partitions = list(topic_meta.partitions.keys())
+        
+        # Get committed offsets
+        committed_offsets = _get_current_offsets(admin_client, group_id, topic_name, partitions)
+        
+        # Get high watermarks to calculate lag using a temporary consumer
+        consumer = get_kafka_factory().create_consumer(group_id=f"mcp-inspector-{uuid4()}", auto_offset_reset='latest')
+        
+        offsets_info = []
+        total_lag = 0
+        
+        try:
+            for p in partitions:
+                tp = TopicPartition(topic_name, p)
+                low, high = consumer.get_watermark_offsets(tp, timeout=5.0)
+                
+                committed = committed_offsets.get(p, -1)
+                
+                # If offset is -1, it means no offset is committed. 
+                # Lag calculation should handle this, optionally treating it as lag from earliest or latest depending on retention.
+                # Here we treat lag as high - low if no commit, or high - committed if committed.
+                if committed >= 0 and high >= 0:
+                    lag = high - committed
+                elif high >= 0 and low >= 0:
+                    # If no offset is committed, the lag is the entire topic partition size (high - low)
+                    lag = high - low
+                else:
+                    lag = 0
+
+                total_lag += lag
+                
+                offsets_info.append({
+                    "partition": p,
+                    "committed_offset": committed,
+                    "high_watermark": high,
+                    "low_watermark": low,
+                    "lag": lag
+                })
+        finally:
+            consumer.close()
+            
+        return {
+            "group_id": group_id,
+            "topic": topic_name,
+            "total_lag": total_lag,
+            "partitions": offsets_info
+        }
+            
+    except Exception as e:
+        return {"error": f"Failed to get offsets for group '{group_id}' on topic '{topic_name}': {e}"}
