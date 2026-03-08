@@ -8,6 +8,10 @@
 
 An MCP server implementation for Kafka, allowing LLMs to interact with and manage Kafka clusters.
 
+<a href="https://glama.ai/mcp/servers/wklee610/kafka-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/wklee610/kafka-mcp/badge" alt="kafka-mcp MCP server" />
+</a>
+
 ## Features
 
 - **Cluster Management**: View broker details `describe_cluster`, `describe_brokers`.
