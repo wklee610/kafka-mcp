@@ -41,13 +41,27 @@ The server requires the `KAFKA_BOOTSTRAP_SERVERS` environment variable.
 
 ### Running the Server
 
-You can run the server directly using `uv` or `python`.
+You can run the server directly using `uv` or `python`, or use Docker.
+
+#### Using uv (Recommended)
 
 ```bash
-# Using uv (Recommended)
 export KAFKA_BOOTSTRAP_SERVERS=localhost:9092
 uv run kafka-mcp
 ```
+
+#### Using Docker
+
+1. Build the Docker image:
+   ```bash
+   docker build -t kafka-mcp .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -i --rm -e KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 kafka-mcp
+   ```
+   *(Note: Use `host.docker.internal` instead of `localhost` if your Kafka cluster is running on the host machine.)*
 
 ### Claude Desktop Configuration
 
