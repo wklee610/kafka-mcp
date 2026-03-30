@@ -16,6 +16,10 @@ An MCP server implementation for Kafka, allowing LLMs to interact with and manag
 - **Consumer Groups**: List `list_consumer_groups`, describe `describe_consumer_group`, and securely manage offsets with `reset_consumer_group_offset` and `rewind_consumer_group_offset_by_timestamp`. Advanced tools include state validation, dry runs, and execution audit logging.
 - **Messaging**: Consume messages `consume_messages` (from beginning, latest, or specific offsets) and produce messages `produce_message`.
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/wklee610-kafka-mcp).
+
 ## Prerequisites
 
 - Python 3.10+
