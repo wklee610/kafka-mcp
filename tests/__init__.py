@@ -1,0 +1,1 @@
+"""Kafka MCP test suite."""
