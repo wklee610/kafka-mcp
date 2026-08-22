@@ -3,26 +3,28 @@ import sys
 from fastmcp import FastMCP
 from .tools.admin import (
     list_topics,
-    describe_topic, 
-    create_topic, 
-    delete_topic, 
+    describe_topic,
+    create_topic,
+    delete_topic,
     create_partitions,
-    describe_configs, 
-    alter_configs
+    describe_configs,
+    alter_configs,
 )
-from .tools.cluster import (
-    describe_cluster, 
-    describe_brokers
-)
+from .tools.cluster import describe_cluster, describe_brokers
 from .tools.consumer import (
-    consume_messages, 
-    list_consumer_groups, 
+    consume_messages,
+    list_consumer_groups,
     describe_consumer_group,
     reset_consumer_group_offset,
     rewind_consumer_group_offset_by_timestamp,
-    get_consumer_group_offsets
+    get_consumer_group_offsets,
 )
 from .tools.producer import produce_message
+from .tools.metrics import (
+    describe_cluster_health,
+    get_broker_metrics,
+    get_topic_metrics,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -52,12 +54,19 @@ mcp.tool()(rewind_consumer_group_offset_by_timestamp)
 # Producer Tools
 mcp.tool()(produce_message)
 
+# Metrics Tools
+mcp.tool()(describe_cluster_health)
+mcp.tool()(get_broker_metrics)
+mcp.tool()(get_topic_metrics)
+
+
 def main():
     try:
         mcp.run()
     except Exception as e:
         logging.error(f"Failed to run MCP server: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
